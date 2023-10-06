@@ -73,7 +73,23 @@ export default function Produto(props){
                         height: '40px',
                         width: '120px',
                     }}
-                    type='button'>
+                    type='button' onClick={()=>{
+                        const prodAdicionado ={
+                            id:props.produto.id,
+                            titulo:props.produto.title,
+                            descricao:props.produto.description,
+                            quantidade: quantidade,
+                            preco:props.produto.price
+                        };
+                        const novaListaCarrinho = [...props.listaProdutosCarrinho, prodAdicionado];
+                        props.setListaProdutos(novaListaCarrinho);
+                        localStorage.setItem('carrinho', JSON.stringify(novaListaCarrinho));
+                        /*
+                        props.setListaProdutos([...props.listaProdutosCarrinho, prodAdicionado]);
+                        //localStorage.setItem('carrinho', JSON.stringify(props.listaProdutosCarrinho)); //Não temos certeza que o estado já foi atualizado
+                        localStorage.setItem('carrinho', JSON.stringify([...props.listaProdutosCarrinho, prodAdicionado]));
+                        */
+                    }}>
                         Comprar
                 </button>
             </div>
